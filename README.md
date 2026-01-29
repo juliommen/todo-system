@@ -5,8 +5,7 @@ Execução (na raiz do projeto):
 1. Build e up de todos os serviços em modo desenvolvimentos:
 
 ```bash
-chmod +x scripts/bootstrap.sh
-./scripts/bootstrap.sh
+bash scripts/bootstrap.sh
 docker compose -f docker-compose.dev.yml up --build -d
 ```
 
