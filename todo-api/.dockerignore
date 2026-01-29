@@ -1,0 +1,15 @@
+.git
+.gitignore
+.vscode
+logs
+tests
+phpunit.xml
+phpunit.xml.dist
+phpcs.xml
+phpcs.xml.dist
+vendor
+Dockerfile.dev
+docker-compose.yml
+.DS_Store
+.env
+.env.*

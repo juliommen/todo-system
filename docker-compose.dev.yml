@@ -1,0 +1,54 @@
+services:
+  mysql:
+    image: mysql:8.0
+    env_file:
+      - ./todo-api/.env
+    environment:
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+
+  todo-api:
+    build:
+      context: ./todo-api
+      dockerfile: Dockerfile.dev
+    env_file:
+      - ./todo-api/.env
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./todo-api:/var/www/html
+      - /var/www/html/vendor
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  todo-web:
+    build:
+      context: ./todo-web
+      dockerfile: Dockerfile.dev
+    env_file:
+      - ./todo-web/.env
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./todo-web/:/app:delegated
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run dev -- --host 0.0.0.0
+    depends_on:
+      - todo-api
+
+volumes:
+  db_data:

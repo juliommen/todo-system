@@ -1,0 +1,30 @@
+{
+  "name": "app/todo-api",
+  "description": "Todo API using Slim 4 and Doctrine",
+  "type": "project",
+  "require": {
+    "php": "~8.2",
+    "slim/slim": "^4.10",
+    "slim/psr7": "^1.6",
+    "doctrine/orm": "^3",
+    "doctrine/dbal": "^4",
+    "symfony/cache": "^7",
+    "doctrine/migrations": "^3.9.5",
+    "monolog/monolog": "^3.0",
+    "vlucas/phpdotenv": "^5.5"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.10",
+    "phpunit/phpunit": "^11.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "scripts": {
+    "start": "php -S 0.0.0.0:8080 -t public",
+    "lint": "phpcs --standard=phpcs.xml.dist src public",
+    "lint-fix": "phpcbf --standard=phpcs.xml.dist src public"
+  }
+}
