@@ -24,7 +24,9 @@ docker compose -f docker-compose.dev.yml exec todo-api ./vendor/bin/phpunit --co
 
 ## Todo API
 
-Documento da estrutura de dados usada para representar uma _tarefa_ no banco de dados (exemplo de objeto):
+Documento da estrutura de dados usada para representar uma _tarefa_ no banco de dados:
+
+Exemplo de objeto:
 
 ```json
 {
@@ -37,19 +39,18 @@ Documento da estrutura de dados usada para representar uma _tarefa_ no banco de 
 }
 ```
 
-Campo / tipo (descrição):
+Campo, tipo e descrição:
 
 - `id` (integer): identificador único da tarefa.
 - `title` (string): título curto da tarefa.
 - `description` (string): descrição, detalhes adicionais.
+- `status` (string enum): estado da tarefa, valores possíveis: `pending`, `completed`.
 - `created_at` (string ISO8601): timestamp de criação.
 - `updated_at` (string ISO8601): timestamp de atualização.
-- `status` (string enum): estado da tarefa, valores possíveis: `pending`, `completed`.
 
-Docker / desenvolvimento (escolhas e justificativa):
+Docker:
 
 - Base da imagem: usa `php:8.2-cli` definido em [todo-api/Dockerfile.dev](todo-api/Dockerfile.dev). Escolhi PHP 8.2 pela compatibilidade com as dependências e por ser a versão alvo do projeto.
-- Extensões: instala `pdo` e `pdo_mysql` para acesso ao MySQL (via Doctrine DBAL/ORM).
 - Expose/porta: a aplicação roda com o servidor embutido em `0.0.0.0:8080` (padrão para desenvolvimento). Arquivo: [todo-api/Dockerfile.dev](todo-api/Dockerfile.dev).
 - Volumes em `docker-compose.dev.yml`: mapeia `./todo-api:/var/www/html` para permitir hot-reload/desenvolvimento, e monta `/var/www/html/vendor` separadamente para evitar sobrescrever dependências já instaladas.
 - Variáveis de ambiente: `env_file` aponta para `./todo-api/.env` para segregar segredos/configurações de ambiente.
@@ -61,7 +62,7 @@ _Nota_: Setup Docker voltado exclusivamente para ambiente de desenvolvimento.
 
 ## Todo Web
 
-Estrutura principal de componentes e responsabilidades (resumo):
+Estrutura principal de componentes e responsabilidades:
 
 ```
 src/
@@ -95,7 +96,7 @@ src/
 		└── utils.ts                # utilitários compartilhados
 ```
 
-Docker / desenvolvimento (escolhas e justificativa):
+Docker:
 
 - Base da imagem: `node:20-alpine` em [todo-web/Dockerfile.dev](todo-web/Dockerfile.dev) para builds leves e compatibilidade com Node 20.
 - Volumes: `./todo-web/:/app:delegated` para permitir edição de código local e `- /app/node_modules` para isolar dependências instaladas no container.
