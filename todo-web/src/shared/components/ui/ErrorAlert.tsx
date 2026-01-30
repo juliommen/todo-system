@@ -13,7 +13,7 @@ export function ErrorAlert({
 }: ErrorAlertProps) {
   return (
     <div
-      className={`opacity-90 w-[85%] min-w-[300px] md:w-auto fixed left-1/2 -translate-x-1/2 top-2 z-50 transition-opacity duration-200`}
+      className={`opacity-95 w-[85%] min-w-[300px] md:w-auto fixed left-1/2 -translate-x-1/2 top-2 z-50 transition-opacity duration-200`}
     >
       <div
         role="alert"
