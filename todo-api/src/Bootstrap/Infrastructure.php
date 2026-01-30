@@ -13,7 +13,7 @@ final class Infrastructure
 {
     public static function createLogger(): LoggerInterface
     {
-        return LoggerProvider::create();
+        return (new LoggerProvider())->create();
     }
 
     public static function createTaskRepository(): TaskRepositoryInterface
