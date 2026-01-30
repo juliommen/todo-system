@@ -48,7 +48,7 @@ export function TaskItem({ task }: { task: Task }) {
 
   return (
     <div className="bg-gray-700 flex items-center justify-between gap-3 p-4 rounded-xl">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3  w-[95%]">
         {updating ? (
           <Spinner size="md" className="mx-1.5" />
         ) : (
@@ -61,7 +61,7 @@ export function TaskItem({ task }: { task: Task }) {
           </Button>
         )}
 
-        <div>
+        <div className=" w-[95%]">
           <div
             className={`text-lg font-semibold ${status === "completed" && "line-through"}`}
           >
@@ -79,11 +79,11 @@ export function TaskItem({ task }: { task: Task }) {
       <AlertDialog>
         <AlertDialogTrigger asChild>
           {deleting ? (
-            <Spinner size="md" className="mr-5" />
+            <Spinner size="md" />
           ) : (
             <Button
               disabled={!!error || loading}
-              className="p-4 disabled:cursor-not-allowed rounded-full disabled:hover:text-red-600  text-red-600 hover:text-red-700 focus:outline-none"
+              className=" p-4 disabled:cursor-not-allowed rounded-full disabled:hover:text-red-600  text-red-600 hover:text-red-700 focus:outline-none"
             >
               <Trash2 />
             </Button>
