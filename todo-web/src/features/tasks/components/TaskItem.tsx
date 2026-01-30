@@ -36,7 +36,7 @@ export function TaskItem({ task }: { task: Task }) {
         <Button
           disabled={!!error}
           onClick={toggle}
-          className={`disabled:cursor-not-allowed p-1.5 rounded-full ${status === "completed" ? "bg-green-500" : "bg-white"} focus:outline-none`}
+          className={`disabled:cursor-not-allowed p-1.5 rounded-full focus:outline-none ${status === "completed" ? "bg-green-500" : "bg-white hover:bg-green-300"}`}
         >
           <Check />
         </Button>
@@ -60,7 +60,7 @@ export function TaskItem({ task }: { task: Task }) {
         <AlertDialogTrigger asChild>
           <Button
             disabled={!!error}
-            className="p-4 disabled:cursor-not-allowed rounded-full disabled:hover:text-red-600  text-red-600 hover:text-red-500 focus:outline-none"
+            className="p-4 disabled:cursor-not-allowed rounded-full disabled:hover:text-red-600  text-red-600 hover:text-red-700 focus:outline-none"
           >
             <Trash2 size={24} />
           </Button>
