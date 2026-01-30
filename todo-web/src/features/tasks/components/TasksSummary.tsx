@@ -7,7 +7,7 @@ export function TasksSummary() {
   const concluded = items.filter((task) => task.status === "completed");
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between py-4">
       <Badge label="Criadas">{items.length}</Badge>
 
       <Badge label="Concluídas">
