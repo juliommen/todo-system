@@ -3,7 +3,7 @@ import { useAppDispatch } from "@/shared/hooks/useAppDispatch";
 import { Button } from "@/shared/components/core/Button";
 import { createTask } from "@/features/tasks";
 import { Input } from "@/shared/components/core/Input";
-import { Plus } from "lucide-react";
+import { ListPlusIcon } from "lucide-react";
 import { useAppSelector } from "@/shared/hooks/useAppSelector";
 
 export function TaskForm() {
@@ -60,7 +60,7 @@ export function TaskForm() {
 
         <div className="flex justify-end">
           <Button type="submit" disabled={loading || !!error}>
-            <Plus size={20} />
+            <ListPlusIcon size={20} />
             {loading ? "Criando..." : "Adicionar tarefa"}
           </Button>
         </div>
