@@ -6,9 +6,9 @@ type Props = HTMLAttributes<HTMLSpanElement> & {
 
 export function Spinner({ size = "md", className = "", ...rest }: Props) {
   const sizes: Record<string, string> = {
-    sm: "w-4 h-4 border-2",
-    md: "w-5 h-5 border-2",
-    lg: "w-6 h-6 border-4",
+    sm: "min-w-4 min-h-4 border-2",
+    md: "min-w-5 min-h-5 border-2",
+    lg: "min-w-6 min-h-6 border-4",
   };
 
   return (

@@ -48,9 +48,9 @@ export function TaskItem({ task }: { task: Task }) {
 
   return (
     <div className="bg-gray-700 flex items-center justify-between gap-3 p-4 rounded-xl">
-      <div className="flex items-center gap-3  w-[95%]">
+      <div className="overflow-hidden text-wrap flex items-center gap-3">
         {updating ? (
-          <Spinner size="md" className="mx-1.5" />
+          <Spinner size="md" className="mx-[7px]" />
         ) : (
           <Button
             disabled={!!error || loading}
@@ -61,7 +61,7 @@ export function TaskItem({ task }: { task: Task }) {
           </Button>
         )}
 
-        <div className=" w-[95%]">
+        <div>
           <div
             className={`text-lg font-semibold ${status === "completed" && "line-through"}`}
           >
@@ -79,7 +79,7 @@ export function TaskItem({ task }: { task: Task }) {
       <AlertDialog>
         <AlertDialogTrigger asChild>
           {deleting ? (
-            <Spinner size="md" />
+            <Spinner size="md" className="mr-4" />
           ) : (
             <Button
               disabled={!!error || loading}
