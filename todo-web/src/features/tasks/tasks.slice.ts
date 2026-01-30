@@ -1,6 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as api from "@/features/tasks";
-import { Task, TaskStatus } from "@/features/tasks";
+import type { Task, TaskStatus } from "@/features/tasks";
 
 type TasksState = {
   items: Task[];
@@ -54,7 +55,7 @@ export const taskSlice = createSlice({
         state.items = action.payload;
         state.loading = false;
       })
-      .addCase(fetchTasks.rejected, (state, action) => {
+      .addCase(fetchTasks.rejected, (state) => {
         state.loading = false;
         state.error = "Erro ao obter tarefas";
       })
@@ -67,7 +68,7 @@ export const taskSlice = createSlice({
         state.loading = false;
         state.items.unshift(action.payload);
       })
-      .addCase(createTask.rejected, (state, action) => {
+      .addCase(createTask.rejected, (state) => {
         state.loading = false;
         state.error = "Erro ao gravar tarefa";
       })
@@ -85,7 +86,7 @@ export const taskSlice = createSlice({
           );
         },
       )
-      .addCase(updateTaskStatus.rejected, (state, action) => {
+      .addCase(updateTaskStatus.rejected, (state) => {
         state.loading = false;
         state.error = "Erro ao atualizar tarefa";
       })
@@ -98,7 +99,7 @@ export const taskSlice = createSlice({
         state.loading = false;
         state.items = state.items.filter((t) => t.id !== action.payload);
       })
-      .addCase(deleteTask.rejected, (state, action) => {
+      .addCase(deleteTask.rejected, (state) => {
         state.loading = false;
         state.error = "Erro ao excluir tarefa";
       });

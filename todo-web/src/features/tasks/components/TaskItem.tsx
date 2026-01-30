@@ -1,5 +1,6 @@
 import { Check, Trash2 } from "lucide-react";
-import { deleteTask, updateTaskStatus, Task } from "@/features/tasks";
+import type { Task } from "@/features/tasks";
+import { deleteTask, updateTaskStatus } from "@/features/tasks";
 import { useAppDispatch } from "@/shared/hooks/useAppDispatch";
 import {
   AlertDialog,

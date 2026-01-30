@@ -1,4 +1,4 @@
-import { Task, TaskStatus } from "@/features/tasks";
+import type { Task, TaskStatus } from "@/features/tasks";
 import { http } from "@/shared/api/http";
 
 const endpoint = "/tasks";

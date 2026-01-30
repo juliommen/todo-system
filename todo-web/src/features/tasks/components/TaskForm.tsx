@@ -1,4 +1,5 @@
-import { FormEvent, useState } from "react";
+import type { FormEvent } from "react";
+import { useState } from "react";
 import { useAppDispatch } from "@/shared/hooks/useAppDispatch";
 import { Button } from "@/shared/components/core/Button";
 import { createTask } from "@/features/tasks";
@@ -29,7 +30,7 @@ export function TaskForm() {
 
       setTitle("");
       setDescription("");
-    } catch (error) {
+    } catch {
     } finally {
       setLoading(false);
     }

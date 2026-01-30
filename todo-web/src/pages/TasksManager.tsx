@@ -24,7 +24,7 @@ export function TasksManager() {
     try {
       await dispatch(fetchTasks()).unwrap();
       setLastError(null);
-    } catch (e) {
+    } catch {
     } finally {
       setRetrying(false);
     }

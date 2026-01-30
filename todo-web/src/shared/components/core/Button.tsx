@@ -1,4 +1,5 @@
-import { forwardRef, ButtonHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes } from "react";
+import { forwardRef } from "react";
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "ghost";
