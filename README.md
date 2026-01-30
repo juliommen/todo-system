@@ -1,4 +1,4 @@
-Projeto monorepo com duas aplicações: API em `todo-api` e frontend em `todo-web`.
+# Instalação
 
 1. Build e up de todos os serviços em modo desenvolvimento:
 
@@ -19,6 +19,8 @@ docker compose -f docker-compose.dev.yml exec todo-api ./vendor/bin/phpunit --co
 ```
 
 ---
+
+# Projeto
 
 ## Todo API
 
