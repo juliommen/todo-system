@@ -18,5 +18,3 @@ export function Spinner({ size = "md", className = "", ...rest }: Props) {
     />
   );
 }
-
-export default Spinner;

@@ -6,7 +6,7 @@ import { createTask } from "@/features/tasks";
 import { Input } from "@/shared/components/core/Input";
 import { ListPlusIcon } from "lucide-react";
 import { useAppSelector } from "@/shared/hooks/useAppSelector";
-import Spinner from "@/shared/components/ui/Spinner";
+import { Spinner } from "@/shared/components/core/Spinner";
 
 export function TaskForm() {
   const { error, loading } = useAppSelector((s) => s.tasks);

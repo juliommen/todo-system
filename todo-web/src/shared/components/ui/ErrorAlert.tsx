@@ -1,5 +1,5 @@
 import { Button } from "@/shared/components/core/Button";
-import Spinner from "./Spinner";
+import { Spinner } from "../core/Spinner";
 
 type ErrorAlertProps = {
   message: string;

@@ -4,7 +4,7 @@ import { useAppSelector } from "@/shared/hooks/useAppSelector";
 import { useAppDispatch } from "@/shared/hooks/useAppDispatch";
 import { TaskItem } from "@/features/tasks/components/TaskItem";
 import { TasksSummary } from "./TasksSummary";
-import Spinner from "@/shared/components/ui/Spinner";
+import { Spinner } from "@/shared/components/core/Spinner";
 
 export function TaskList() {
   const dispatch = useAppDispatch();

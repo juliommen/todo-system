@@ -16,7 +16,7 @@ import {
 import { Button } from "@/shared/components/core/Button";
 import { useAppSelector } from "@/shared/hooks/useAppSelector";
 import { useState } from "react";
-import Spinner from "@/shared/components/ui/Spinner";
+import { Spinner } from "@/shared/components/core/Spinner";
 
 export function TaskItem({ task }: { task: Task }) {
   const { id, status, title, description } = task;
