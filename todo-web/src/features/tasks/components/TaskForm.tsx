@@ -37,7 +37,7 @@ export function TaskForm() {
   }
 
   return (
-    <div className="bg-gray-700 rounded-xl p-6">
+    <div className="bg-gray-700 rounded-xl p-6 my-6">
       <form onSubmit={handleSubmit} className="space-y-3">
         <Input
           id="title"

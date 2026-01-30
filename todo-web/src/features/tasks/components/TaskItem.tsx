@@ -49,7 +49,7 @@ export function TaskItem({ task }: { task: Task }) {
           </div>
 
           <div
-            className={`text-sm text-gray-200 ${status === "completed" && "line-through"}`}
+            className={`text-sm text-gray-300 ${status === "completed" && "line-through"}`}
           >
             {description}
           </div>

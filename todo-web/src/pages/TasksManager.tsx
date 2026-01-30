@@ -42,9 +42,7 @@ export function TasksManager() {
 
       <main className="min-h-screen flex items-start justify-center py-8 px-4">
         <section className="w-full max-w-xl">
-          <header className="mb-6">
-            <h1 className="text-2xl font-bold mb-4">Gerenciador de Tarefas</h1>
-          </header>
+          <h1 className="text-2xl font-bold mb-4">Gerenciador de Tarefas</h1>
 
           <TaskForm />
 

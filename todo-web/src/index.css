@@ -19,7 +19,7 @@ body,
 
 body {
   @apply bg-gray-900 text-white;
-  font-family: Cairo, ui-sans-serif;
+  font-family: Cairo, sans-serif;
 }
 
 @layer base {
