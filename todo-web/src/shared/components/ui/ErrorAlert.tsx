@@ -1,4 +1,5 @@
 import { Button } from "@/shared/components/core/Button";
+import Spinner from "./Spinner";
 
 type ErrorAlertProps = {
   message: string;
@@ -21,8 +22,9 @@ export function ErrorAlert({
         className="flex justify-center gap-4 items-center px-4 py-2 bg-red-700 rounded-md shadow-lg"
       >
         <p className="text-lg">{message}</p>
+
         <Button onClick={onRetry} variant="ghost" disabled={retrying}>
-          Atualizar
+          {retrying && <Spinner size="sm" className="text-white" />} Atualizar
         </Button>
       </div>
     </div>

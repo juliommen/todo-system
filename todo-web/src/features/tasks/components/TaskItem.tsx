@@ -15,31 +15,51 @@ import {
 } from "@/shared/components/ui/AlertDialog";
 import { Button } from "@/shared/components/core/Button";
 import { useAppSelector } from "@/shared/hooks/useAppSelector";
+import { useState } from "react";
+import Spinner from "@/shared/components/ui/Spinner";
 
 export function TaskItem({ task }: { task: Task }) {
   const { id, status, title, description } = task;
   const dispatch = useAppDispatch();
-  const { error } = useAppSelector((s) => s.tasks);
+  const { error, loading } = useAppSelector((s) => s.tasks);
+  const [updating, setUpdating] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
-  function toggle() {
+  async function toggle() {
+    setUpdating(true);
     const next = status === "pending" ? "completed" : "pending";
-    dispatch(updateTaskStatus({ id, status: next }));
+    try {
+      await dispatch(updateTaskStatus({ id, status: next })).unwrap();
+    } catch {
+    } finally {
+      setUpdating(false);
+    }
   }
 
-  function remove() {
-    dispatch(deleteTask(id));
+  async function remove() {
+    setDeleting(true);
+    try {
+      await dispatch(deleteTask(id));
+    } catch {
+    } finally {
+      setDeleting(false);
+    }
   }
 
   return (
     <div className="bg-gray-700 flex items-center justify-between gap-3 p-4 rounded-xl">
       <div className="flex items-center gap-3">
-        <Button
-          disabled={!!error}
-          onClick={toggle}
-          className={`disabled:cursor-not-allowed p-1.5 rounded-full focus:outline-none ${status === "completed" ? "bg-green-500" : "bg-white hover:bg-green-300"}`}
-        >
-          <Check />
-        </Button>
+        {updating ? (
+          <Spinner size="md" className="mx-1.5" />
+        ) : (
+          <Button
+            disabled={!!error || loading}
+            onClick={toggle}
+            className={`disabled:cursor-not-allowed p-1.5 rounded-full focus:outline-none hover:bg-green-300 ${status === "completed" ? "bg-green-500" : "bg-white"}`}
+          >
+            <Check />
+          </Button>
+        )}
 
         <div>
           <div
@@ -58,12 +78,16 @@ export function TaskItem({ task }: { task: Task }) {
 
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button
-            disabled={!!error}
-            className="p-4 disabled:cursor-not-allowed rounded-full disabled:hover:text-red-600  text-red-600 hover:text-red-700 focus:outline-none"
-          >
-            <Trash2 size={24} />
-          </Button>
+          {deleting ? (
+            <Spinner size="md" className="mr-5" />
+          ) : (
+            <Button
+              disabled={!!error || loading}
+              className="p-4 disabled:cursor-not-allowed rounded-full disabled:hover:text-red-600  text-red-600 hover:text-red-700 focus:outline-none"
+            >
+              <Trash2 />
+            </Button>
+          )}
         </AlertDialogTrigger>
         <AlertDialogContent className="bg-gray-900">
           <AlertDialogHeader>

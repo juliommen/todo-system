@@ -6,22 +6,23 @@ import { createTask } from "@/features/tasks";
 import { Input } from "@/shared/components/core/Input";
 import { ListPlusIcon } from "lucide-react";
 import { useAppSelector } from "@/shared/hooks/useAppSelector";
+import Spinner from "@/shared/components/ui/Spinner";
 
 export function TaskForm() {
-  const { error } = useAppSelector((s) => s.tasks);
+  const { error, loading } = useAppSelector((s) => s.tasks);
   const dispatch = useAppDispatch();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [creating, setCreating] = useState(false);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
+    setCreating(true);
+
     if (!title.trim() || !description.trim()) {
       return;
     }
-
-    setLoading(true);
 
     try {
       await dispatch(
@@ -32,7 +33,7 @@ export function TaskForm() {
       setDescription("");
     } catch {
     } finally {
-      setLoading(false);
+      setCreating(false);
     }
   }
 
@@ -60,9 +61,13 @@ export function TaskForm() {
         />
 
         <div className="flex justify-end">
-          <Button type="submit" disabled={loading || !!error}>
-            <ListPlusIcon size={20} />
-            {loading ? "Criando..." : "Adicionar tarefa"}
+          <Button type="submit" disabled={!!error || loading}>
+            {creating ? (
+              <Spinner size="sm" className="text-white" />
+            ) : (
+              <ListPlusIcon />
+            )}
+            Adicionar tarefa
           </Button>
         </div>
       </form>
