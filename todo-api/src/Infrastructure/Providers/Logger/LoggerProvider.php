@@ -7,11 +7,10 @@ namespace App\Infrastructure\Providers\Logger;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
-use App\Domain\Interfaces\LoggerProviderInterface;
 
-class LoggerProvider implements LoggerProviderInterface
+class LoggerProvider
 {
-    public function create(): LoggerInterface
+    public static function create(): LoggerInterface
     {
         $logger = new Logger('app');
         $logPath = __DIR__ . '/../../../../logs/app.log';
