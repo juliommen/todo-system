@@ -44,7 +44,7 @@ export function TaskForm() {
           id="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Título"
+          placeholder="Título da tarefa"
           maxLength={50}
           required
         />
@@ -67,7 +67,7 @@ export function TaskForm() {
             ) : (
               <ListPlusIcon />
             )}
-            Adicionar tarefa
+            Nova tarefa
           </Button>
         </div>
       </form>
